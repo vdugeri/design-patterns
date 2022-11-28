@@ -1,7 +1,7 @@
 package com.danverem.observer;
 
-import com.danverem.observer.models.Email;
 import com.danverem.observer.models.Message;
+import com.danverem.observer.models.MessageChannel;
 import com.danverem.observer.services.EmailService;
 
 public class EmailObserver implements Observer {
@@ -19,7 +19,7 @@ public class EmailObserver implements Observer {
         if(observable instanceof Notification notification) {
             Message message = notification.getMessage();
 
-            if(message instanceof Email) {
+            if(message.getChannels().contains(MessageChannel.EMAIL)) {
                 emailService.sendEmail(message);
             }
         }

@@ -1,6 +1,5 @@
 package com.danverem.observer.services;
 
-import com.danverem.observer.models.Email;
 import com.danverem.observer.models.Message;
 
 public class EmailService {
