@@ -1,6 +1,6 @@
 package com.danverem.observer;
 
-public interface Subject {
+public interface Observable {
     void registerObserver(Observer o);
     void removeObserver(Observer o);
     void notifyObservers();

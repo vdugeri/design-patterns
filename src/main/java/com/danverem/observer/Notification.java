@@ -1,13 +1,15 @@
 package com.danverem.observer;
 
+import com.danverem.observer.models.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationObserver implements Subject {
+public class Notification implements Observable {
     public List<Observer> observers;
     public Message message;
 
-    public NotificationObserver() {
+    public Notification() {
         this.observers = new ArrayList<>();
     }
 
@@ -27,7 +29,14 @@ public class NotificationObserver implements Subject {
     @Override
     public void notifyObservers() {
         for(Observer observer: observers) {
-            observer.update(message);
+            observer.update(this);
         }
     }
+
+    public void notificationReceived(Message message) {
+        this.message = message;
+        this.notifyObservers();
+    }
+
+
 }
