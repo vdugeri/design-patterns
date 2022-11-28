@@ -18,7 +18,7 @@ public class SmsObserver implements Observer {
     @Override
     public void update(Observable observable) {
         if(observable instanceof Notification notification) {
-            Message message = notification.message;
+            Message message = notification.getMessage();
 
             if(message instanceof Sms) {
                 smsService.sendSms(message);

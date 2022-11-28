@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Notification implements Observable {
-    public List<Observer> observers;
-    public Message message;
+    private List<Observer> observers;
+    private Message message;
+    private boolean stateChanged;
 
     public Notification() {
         this.observers = new ArrayList<>();
@@ -28,15 +29,23 @@ public class Notification implements Observable {
 
     @Override
     public void notifyObservers() {
-        for(Observer observer: observers) {
-            observer.update(this);
+        if(stateChanged) {
+            for(Observer observer: observers) {
+                observer.update(this);
+            }
         }
+
+        this.stateChanged = false;
+
     }
 
     public void notificationReceived(Message message) {
         this.message = message;
+        this.stateChanged = true;
         this.notifyObservers();
     }
 
-
+    public Message getMessage() {
+        return message;
+    }
 }
